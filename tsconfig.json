@@ -23,5 +23,14 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules",
+    "src/App.tsx",
+    "src/index.tsx",
+    "src/App.test.tsx",
+    "src/setupTests.ts",
+    "src/reportWebVitals.ts",
+    "src/react-app-env.d.ts",
+    "src/restaurants/*.tsx"
+  ]
 }
