@@ -55,8 +55,27 @@ export default function PennyCrownPage() {
     };
   }, [sidebarOpen]);
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Penny Crown Tavern",
+    "description": "Classic tavern-style dining in Calgary with hearty meals, craft beers, and a warm, welcoming atmosphere.",
+    "servesCuisine": "American",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Calgary",
+      "addressRegion": "AB",
+      "addressCountry": "CA"
+    }
+  };
+
   return (
     <div className="penny-crown">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <motion.nav 
         className={`sidebar ${sidebarOpen ? 'open' : ''}`}
         initial={false}
