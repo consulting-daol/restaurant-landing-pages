@@ -35,7 +35,7 @@ export const MenuCardStack = ({
       className="menu-scroll-stack"
     >
       {categories.map((category, idx) => (
-        <ScrollStackItem key={category.title} itemClassName="menu-card-stack-item">
+        <ScrollStackItem key={category.title} itemClassName="menu-card-interactive">
           <MenuCard
             category={category}
             index={idx}
@@ -44,6 +44,7 @@ export const MenuCardStack = ({
             onToggleExpansion={() => onToggleExpansion(idx)}
             onHoverStart={() => onHoverStart(idx)}
             onHoverEnd={onHoverEnd}
+            isInScrollStack={true}
           />
         </ScrollStackItem>
       ))}

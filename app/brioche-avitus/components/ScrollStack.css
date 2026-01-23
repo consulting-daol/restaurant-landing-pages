@@ -48,18 +48,13 @@
   margin-top: 3rem;
 }
 
-.menu-card-stack-item {
-  background: white;
+.scroll-stack-card.menu-card-interactive {
+  background: linear-gradient(135deg, #fff5f2 0%, #ffe8e0 100%);
   border-radius: 25px;
   box-shadow: 0 10px 40px rgba(255, 107, 53, 0.2);
   border: 3px solid transparent;
-  overflow: hidden;
-}
-
-.menu-card-stack-item .menu-card-interactive {
-  margin: 0;
-  height: 100%;
-  min-height: auto;
+  padding: 3rem;
+  margin: 30px 0;
 }
 
 @media (max-width: 768px) {
@@ -76,21 +71,12 @@
     overflow: visible;
   }
   
-  .menu-card-stack-item {
-    border-radius: 20px;
-    overflow: visible;
-    height: auto;
-    min-height: auto;
-  }
-  
-  .menu-card-stack-item .menu-card-interactive {
+  .scroll-stack-card.menu-card-interactive {
     padding: 1.5rem;
-    height: auto;
-    min-height: auto;
-    overflow: visible;
+    border-radius: 20px;
   }
   
-  .menu-card-stack-item .menu-card-image {
+  .scroll-stack-card.menu-card-interactive .menu-card-image {
     width: 100%;
     height: auto;
     min-height: 200px;
@@ -99,7 +85,7 @@
     margin-bottom: 1rem;
   }
   
-  .menu-card-stack-item .menu-card-img {
+  .scroll-stack-card.menu-card-interactive .menu-card-img {
     width: 100% !important;
     height: auto !important;
     min-height: 200px;

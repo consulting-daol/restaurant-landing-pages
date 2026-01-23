@@ -13,6 +13,7 @@ interface MenuCardProps {
   onToggleExpansion: () => void;
   onHoverStart: () => void;
   onHoverEnd: () => void;
+  isInScrollStack?: boolean;
 }
 
 export const MenuCard = ({
@@ -23,6 +24,7 @@ export const MenuCard = ({
   onToggleExpansion,
   onHoverStart,
   onHoverEnd,
+  isInScrollStack = false,
 }: MenuCardProps) => {
   const displayedItems = isExpanded ? category.items : category.items.slice(0, 3);
   const remainingCount = category.items.length - 3;
@@ -34,23 +36,8 @@ export const MenuCard = ({
     return 'center 30%';
   };
 
-  return (
-    <motion.div
-      className={`menu-card-interactive ${isExpanded ? 'expanded' : ''}`}
-      initial={{ opacity: 0, y: 50, rotateX: -15 }}
-      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.2 }}
-      onHoverStart={onHoverStart}
-      onHoverEnd={onHoverEnd}
-      animate={{ 
-        scale: isHovered ? 1.05 : 1
-      }}
-      style={{ 
-        transformStyle: 'preserve-3d',
-        perspective: '1000px'
-      }}
-    >
+  const cardContent = (
+    <>
       <div className="card-icon-interactive">{category.icon}</div>
       {category.image && (
         <div className="menu-card-image">
@@ -115,6 +102,31 @@ export const MenuCard = ({
           </p>
         )}
       </div>
+    </>
+  );
+
+  if (isInScrollStack) {
+    return cardContent;
+  }
+
+  return (
+    <motion.div
+      className={`menu-card-interactive ${isExpanded ? 'expanded' : ''}`}
+      initial={{ opacity: 0, y: 50, rotateX: -15 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.2 }}
+      onHoverStart={onHoverStart}
+      onHoverEnd={onHoverEnd}
+      animate={{ 
+        scale: isHovered ? 1.05 : 1
+      }}
+      style={{ 
+        transformStyle: 'preserve-3d',
+        perspective: '1000px'
+      }}
+    >
+      {cardContent}
     </motion.div>
   );
 };
