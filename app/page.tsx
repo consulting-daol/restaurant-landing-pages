@@ -40,6 +40,13 @@ export default function Home() {
           <h2 className="text-2xl mb-2">Fresh Eats</h2>
           <p>Interactive Cards</p>
         </Link>
+        <Link
+          href="/ember"
+          className="no-underline text-inherit bg-white/10 p-8 rounded-lg transition-transform hover:-translate-y-1"
+        >
+          <h2 className="text-2xl mb-2">Émber</h2>
+          <p>Fine Dining Elegance</p>
+        </Link>
       </div>
     </div>
   );
