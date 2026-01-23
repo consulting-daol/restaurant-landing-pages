@@ -69,18 +69,41 @@
   
   .scroll-stack-card {
     height: auto;
-    min-height: 25rem;
+    min-height: auto;
     padding: 1.5rem;
     border-radius: 20px;
     margin: 20px 0;
+    overflow: visible;
   }
   
   .menu-card-stack-item {
     border-radius: 20px;
+    overflow: visible;
+    height: auto;
+    min-height: auto;
   }
   
   .menu-card-stack-item .menu-card-interactive {
     padding: 1.5rem;
+    height: auto;
+    min-height: auto;
+    overflow: visible;
+  }
+  
+  .menu-card-stack-item .menu-card-image {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  
+  .menu-card-stack-item .menu-card-img {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 200px;
+    object-fit: cover;
   }
   
   .menu-scroll-stack {
