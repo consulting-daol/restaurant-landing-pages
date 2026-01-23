@@ -14,6 +14,7 @@
     "@types/react-dom": "^19.2.3",
     "framer-motion": "^12.24.7",
     "instafeed.js": "^2.1.0",
+    "lucide-react": "^0.563.0",
     "next": "^15.1.6",
     "react": "^19.2.3",
     "react-dom": "^19.2.3",
