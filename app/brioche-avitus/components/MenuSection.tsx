@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { MenuCard } from './MenuCard';
+import { MenuCardStack } from './MenuCardStack';
 import { useCardExpansion } from './hooks/useCardExpansion';
 import type { MenuCategory } from './types';
 
@@ -65,9 +66,21 @@ const menuCategories: MenuCategory[] = [
 
 export const MenuSection = () => {
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const menuContainerRef = useRef<HTMLDivElement>(null);
   const premiumContainerRef = useRef<HTMLDivElement>(null);
   const { expandedCards, toggleCardExpansion } = useCardExpansion();
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   return (
     <section id="menu" className="menu-interactive">
@@ -81,35 +94,46 @@ export const MenuSection = () => {
           Notre Menu
         </motion.h2>
         
-        <div className="menu-cards-wrapper" ref={menuContainerRef}>
-          <motion.div 
-            className="menu-cards-interactive"
-            drag="x"
-            dragConstraints={menuContainerRef}
-            dragElastic={0.1}
-            dragMomentum={true}
-            dragDirectionLock={true}
-            dragPropagation={false}
-            whileDrag={{ cursor: 'grabbing' }}
-            style={{ 
-              willChange: 'transform',
-              touchAction: 'pan-x'
-            }}
-          >
-            {menuCategories.map((category, idx) => (
-              <MenuCard
-                key={category.title}
-                category={category}
-                index={idx}
-                isExpanded={expandedCards.has(idx)}
-                isHovered={hoveredCard === idx}
-                onToggleExpansion={() => toggleCardExpansion(idx)}
-                onHoverStart={() => setHoveredCard(idx)}
-                onHoverEnd={() => setHoveredCard(null)}
-              />
-            ))}
-          </motion.div>
-        </div>
+        {isMobile ? (
+          <MenuCardStack
+            categories={menuCategories}
+            expandedCards={expandedCards}
+            hoveredCard={hoveredCard}
+            onToggleExpansion={toggleCardExpansion}
+            onHoverStart={setHoveredCard}
+            onHoverEnd={() => setHoveredCard(null)}
+          />
+        ) : (
+          <div className="menu-cards-wrapper" ref={menuContainerRef}>
+            <motion.div 
+              className="menu-cards-interactive"
+              drag="x"
+              dragConstraints={menuContainerRef}
+              dragElastic={0.1}
+              dragMomentum={true}
+              dragDirectionLock={true}
+              dragPropagation={false}
+              whileDrag={{ cursor: 'grabbing' }}
+              style={{ 
+                willChange: 'transform',
+                touchAction: 'pan-x'
+              }}
+            >
+              {menuCategories.map((category, idx) => (
+                <MenuCard
+                  key={category.title}
+                  category={category}
+                  index={idx}
+                  isExpanded={expandedCards.has(idx)}
+                  isHovered={hoveredCard === idx}
+                  onToggleExpansion={() => toggleCardExpansion(idx)}
+                  onHoverStart={() => setHoveredCard(idx)}
+                  onHoverEnd={() => setHoveredCard(null)}
+                />
+              ))}
+            </motion.div>
+          </div>
+        )}
 
         <div className="premium-cards-wrapper" ref={premiumContainerRef}>
           <motion.div 
