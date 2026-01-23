@@ -64,14 +64,15 @@
 
 @media (max-width: 768px) {
   .scroll-stack-inner {
-    padding: 10vh 1.5rem 30rem;
+    padding: 5vh 2rem 30rem;
   }
   
   .scroll-stack-card {
     height: auto;
     min-height: 25rem;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 20px;
+    margin: 20px 0;
   }
   
   .menu-card-stack-item {
@@ -80,5 +81,9 @@
   
   .menu-card-stack-item .menu-card-interactive {
     padding: 1.5rem;
+  }
+  
+  .menu-scroll-stack {
+    margin-top: 2rem;
   }
 }

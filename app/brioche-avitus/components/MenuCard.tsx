@@ -44,7 +44,6 @@ export const MenuCard = ({
       onHoverStart={onHoverStart}
       onHoverEnd={onHoverEnd}
       animate={{ 
-        rotateY: isHovered ? 5 : 0,
         scale: isHovered ? 1.05 : 1
       }}
       style={{ 
